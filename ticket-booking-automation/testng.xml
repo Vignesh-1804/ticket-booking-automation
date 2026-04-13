@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Ticket Booking Suite">
+    <test name="Ticket Booking Tests">
+        <classes>
+            <class name="com.ticket.tests.BookingTest"/>
+            <class name="com.ticket.tests.ConcurrencyTest"/>
+        </classes>
+    </test>
+</suite>

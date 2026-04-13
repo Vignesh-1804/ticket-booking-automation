@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking Demo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #050816, #0d1326, #151932);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(8, 12, 24, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff7a18;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            color: #b5b8c5;
+            font-size: 15px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 70px 60px;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-left h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-left p {
+            color: #b5b8c5;
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #ff7a18;
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 18px;
+            min-width: 120px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .stat-box h2 {
+            color: #ff7a18;
+            margin-bottom: 8px;
+        }
+
+        .hero-right {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 30px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 40px rgba(0,0,0,0.35);
+        }
+
+        .hero-right h2 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .hero-right p {
+            color: #a8adbd;
+            margin-bottom: 25px;
+        }
+
+        .demo-box {
+            background: rgba(255, 122, 24, 0.1);
+            border: 1px solid rgba(255, 122, 24, 0.25);
+            padding: 18px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+        }
+
+        .demo-box span {
+            color: #ffb36b;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b7bcc9;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input::placeholder {
+            color: #8d93a5;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(90deg, #ff7a18, #ff9f43);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 122, 24, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            padding: 0 60px 60px;
+        }
+
+        .movie-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+        }
+
+        .movie-image {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            background: linear-gradient(135deg, #1b2242, #10172f);
+        }
+
+        .movie-content {
+            padding: 20px;
+        }
+
+        .movie-content h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .movie-content p {
+            color: #a8adbd;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 26px;
+            color: #ff7a18;
+            font-weight: 700;
+        }
+
+        .tag {
+            background: rgba(0,255,136,0.15);
+            color: #57ffb0;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+        }
+
+        .movie-card button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #ff7a18;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media(max-width: 1100px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .movie-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 700px) {
+            .navbar {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero-left h1 {
+                font-size: 42px;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+
+            .movie-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">🎟 TicketZone</div>
+        <div class="nav-links">
+            <span>Home</span>
+            <span>Movies</span>
+            <span>Seats</span>
+            <span>Payment</span>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-left">
+            <h1>Book Your <span class="highlight">Movie Tickets</span> In Seconds</h1>
+            <p>
+                Fast booking, premium seats, easy payment and instant confirmation.
+                Experience the modern ticket booking platform for movies, events and shows.
+            </p>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <h2>50+</h2>
+                    <p>Movies</p>
+                </div>
+                <div class="stat-box">
+                    <h2>200+</h2>
+                    <p>Seats</p>
+                </div>
+                <div class="stat-box">
+                    <h2>24/7</h2>
+                    <p>Booking</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <h2>Sign In</h2>
+            <p>Login with demo credentials and continue your booking.</p>
+
+            <div class="demo-box">
+                <span>Demo Credentials</span>
+                Username: student <br>
+                Password: Password123
+            </div>
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+
+            <button class="btn" id="loginBtn">Login & Continue</button>
+        </div>
+    </section>
+
+    <h2 class="section-title">Now Showing</h2>
+
+    <section class="movie-grid">
+        <div class="movie-card">
+            <div class="movie-image">🎬</div>
+            <div class="movie-content">
+                <h3 id="movie">Avengers Endgame</h3>
+                <p>Action, Adventure, Sci-Fi</p>
+                <div class="price-row">
+                    <div class="price">₹250</div>
+                    <div class="tag">Available</div>
+                </div>
+                <button id="bookNow">Book Now</button>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="movie-image">🚀</div>
+            <div class="movie-content">
+                <h3>Interstellar</h3>
+                <p>Adventure, Drama, Sci‑Fi</p>
+                <div class="price-row">
+                    <div class="price">₹220</div>
+                    <div class="tag">Available</div>
+                </div>
+                <button>Book Now</button>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="movie-image">👻</div>
+            <div class="movie-content">
+                <h3>Conjuring</h3>
+                <p>Horror, Mystery, Thriller</p>
+                <div class="price-row">
+                    <div class="price">₹180</div>
+                    <div class="tag">Available</div>
+                </div>
+                <button>Book Now</button>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="movie-image">🦸</div>
+            <div class="movie-content">
+                <h3>Batman Begins</h3>
+                <p>Action, Crime, Drama</p>
+                <div class="price-row">
+                    <div class="price">₹210</div>
+                    <div class="tag">Available</div>
+                </div>
+                <button>Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 0 60px 80px;">
+        <div class="hero-right" style="max-width: 700px; margin: auto;">
+            <h2>Seat Selection & Payment</h2>
+            <p>Select seat and enter payment details.</p>
+
+            <div class="form-group">
+                <label>Select Seat</label>
+                <select id="seat">
+                    <option id="seatOption">Seat A1</option>
+                    <option>Seat A2</option>
+                    <option>Seat B1</option>
+                    <option>Seat B2</option>
+                </select>
+            </div>
+
+            <button class="btn" id="confirmSeat" style="margin-bottom: 20px;">Confirm Seat</button>
+
+            <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+            </div>
+
+            <div class="form-group">
+                <label>Expiry Date</label>
+                <input type="text" id="expiryDate" placeholder="12/28">
+            </div>
+
+            <div class="form-group">
+                <label>CVV</label>
+                <input type="password" id="cvv" placeholder="123">
+            </div>
+
+            <button class="btn" id="payNow">Pay Now</button>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+com\ticket\tests\ConcurrencyTest.class
+com\ticket\tests\BaseTest.class
+com\ticket\tests\BookingTest.class
